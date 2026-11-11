@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A mobile-friendly NYC event finder with search, categories, free-event filters and a human-curated shortlist. Portfolio demo with fictional events.">
+  <meta name="referrer" content="no-referrer">
+  <title>NYC Event Finder</title>
+  <style>:root{color-scheme:light;--paper:#f6f8fc;--card:#fff;--ink:#142139;--muted:#53617a;--line:#d5ddeb;--accent:#2853bf;--band:#132440;--band-text:#f6f8ff;--tag:#e9effb;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+@media(prefers-color-scheme:dark){:root{color-scheme:dark;--paper:#101927;--card:#192638;--ink:#edf3ff;--muted:#b2c1d8;--line:#35465f;--accent:#a5c0ff;--band:#0a1424;--band-text:#edf3ff;--tag:#273b59}}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);line-height:1.6;-webkit-text-size-adjust:100%}.page{width:min(100%,64rem);margin:auto;padding-inline:max(1.25rem,env(safe-area-inset-left))}button,input{font:inherit}button{min-height:44px;border:1px solid var(--line);border-radius:6px;padding:.45rem .85rem;background:var(--card);color:var(--ink);cursor:pointer}button:hover{border-color:var(--accent)}button[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.skip{position:absolute;left:1rem;top:-5rem;background:var(--card);color:var(--ink);padding:.75rem;z-index:20}.skip:focus{top:.5rem}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.mast{background:var(--band);color:var(--band-text);padding:3.5rem 0 2rem}.eyebrow{text-transform:uppercase;letter-spacing:.13em;font-size:.75rem;font-weight:600;color:#b5c8ee}h1{font-size:clamp(2.4rem,7vw,4.5rem);line-height:1.08;letter-spacing:-.05em;margin:.7rem 0 1.1rem;font-weight:750}h1 span{color:#a8c5ff}.intro{font-size:1.05rem;max-width:38rem;color:#d4def1;margin:0}.demo{display:inline-block;margin:1.2rem 0 .2rem;padding:.4rem .65rem;border:1px solid #63789b;color:#dbe6ff;border-radius:4px;font-size:.78rem}.demo[hidden]{display:none}.tally{display:flex;gap:.5rem 1.5rem;flex-wrap:wrap;margin-top:1.5rem;font-size:.8rem;color:#c1cfe7}.tally b{font-size:1rem;color:#fff;font-variant-numeric:tabular-nums;margin-right:.3rem}.controls{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line);padding:1rem 0}.search-row{display:flex;gap:.55rem;flex-wrap:wrap}input[type=search]{flex:1;min-width:12rem;min-height:46px;padding:.6rem .85rem;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink)}input::placeholder{color:var(--muted)}.filter-row{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-top:.65rem}.chips{display:flex;flex-wrap:wrap;gap:.45rem}.reset{background:none;border-color:transparent;color:var(--accent);font-size:.8rem;white-space:nowrap}.categories{margin-top:.65rem}.categories button{font-size:.8rem}.result-count{font-size:.85rem;color:var(--muted);margin:1.5rem 0}.daygroup{margin-bottom:2.2rem}.day{font-size:1rem;font-weight:650;padding-bottom:.5rem;margin:0;border-bottom:1px solid var(--line);display:flex;gap:.7rem;align-items:center}.past-label{font-size:.7rem;text-transform:uppercase;color:var(--muted)}.entry{margin-top:.8rem;padding:1.3rem 1.4rem;border:1px solid var(--line);border-radius:8px;background:var(--card)}.entry.short{border-left:4px solid var(--accent)}.entry.past{opacity:.75}.etop{display:flex;flex-wrap:wrap;gap:.25rem 1rem;align-items:baseline;justify-content:space-between}.ename{font-size:1.25rem;line-height:1.35;margin:0;font-weight:650;letter-spacing:-.02em;overflow-wrap:anywhere}.etime{font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}.meta,.description,.clash,.provenance{overflow-wrap:anywhere}.meta{margin:.4rem 0 0;font-size:.88rem;color:var(--muted)}.description{font-size:.94rem;margin:.7rem 0 0}.labels{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.9rem}.label{font-size:.7rem;border:1px solid var(--line);padding:.15rem .5rem;border-radius:4px;color:var(--muted)}.label.free{color:var(--accent);background:var(--tag);border-color:var(--tag)}.label.unknown{border-style:dashed}.clash{font-size:.8rem;border-left:2px solid var(--line);padding-left:.7rem;color:var(--muted);margin:.9rem 0 0}.provenance{font-size:.75rem;color:var(--muted);margin:.75rem 0 0}a.out{color:var(--accent);font-size:.85rem;text-underline-offset:3px;display:inline-block;padding:.5rem 0;min-height:44px}.empty{text-align:center;margin:4rem 0;color:var(--muted)}footer.page{font-size:.75rem;color:var(--muted);border-top:1px solid var(--line);padding-block:1.5rem 3rem;margin-top:3rem}
+@media(max-width:640px){.mast{padding:2.25rem 0 1.5rem}.intro{font-size:.95rem}.controls{position:static;padding:.8rem 0}.search-row input{flex-basis:100%}.search-row button{flex:1}.categories{flex-wrap:nowrap;overflow-x:auto;padding-bottom:.35rem}.categories button{flex:none}.entry{padding:1rem}.ename{font-size:1.15rem}.etop{display:block}.etime{display:block;margin-top:.25rem}.tally{gap:.4rem 1rem}.demo{font-size:.73rem}.filter-row{align-items:flex-start}.reset{max-width:5.5rem;white-space:normal}.chips button{padding-inline:.65rem;font-size:.8rem}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+  <a class="skip" href="#results">Skip to events</a>
+  <header class="mast">
+    <div class="page">
+      <div class="eyebrow">Five boroughs. A few good plans.</div>
+      <h1>NYC Event Finder<span aria-hidden="true">.</span></h1>
+      <p class="intro">Find an evening worth leaving the house for. Browse events, narrow the list, and keep the ones that catch your eye.</p>
+      <div class="demo" id="demo" hidden>Portfolio demo · Fictional events · Sample calendar: November 2026</div>
+      <div id="tally" class="tally"></div>
+    </div>
+  </header>
+  <section class="controls" aria-label="Filter events">
+    <div class="page">
+      <div class="search-row">
+        <label class="sr-only" for="q">Search events, organizers or venues</label>
+        <input id="q" type="search" placeholder="Search events, organizers or venues" autocomplete="off">
+        <button id="f-free" aria-pressed="false">Free only</button>
+        <button id="f-past" aria-pressed="true">Hide past</button>
+      </div>
+      <div class="filter-row"><div class="chips" id="pools" role="group" aria-label="Event pool"></div><button class="reset" id="reset">Reset filters</button></div>
+      <div class="chips categories" id="cats" role="group" aria-label="Categories"></div>
+    </div>
+  </section>
+  <main class="page" id="results" tabindex="-1">
+    <p id="count" class="result-count" role="status" aria-live="polite"></p>
+    <div id="list"></div>
+    <p id="none" class="empty" hidden>No events match. Try another search or reset the filters.</p>
+    <noscript>This event finder needs JavaScript to display and filter its events.</noscript>
+  </main>
+  <footer class="page">Dates and times are New York local time. Confirm details with the organizer before making plans. This tool does not book or register for events.</footer>
+  <script type="application/json" id="data">{"events": [{"name": "The Previous Chapter", "date": "2026-11-08", "time": "15:00", "organizer": "Sample Reading Room", "category": "Books", "venue": "Sample bookshop \u00b7 Brooklyn", "source": "Fictional demo", "url": "", "admission": "Free", "registration": "RSVP", "description": "A fictional past event used to demonstrate the Hide past filter.", "verified": "Sample data \u00b7 not a real listing", "pool": "candidate"}, {"name": "Type and the City", "date": "2026-11-12", "time": "18:30", "organizer": "Sample Design Studio", "category": "Design", "venue": "Sample studio \u00b7 Manhattan", "source": "Fictional demo", "url": "", "admission": "Free", "registration": "RSVP", "description": "A fictional evening exploring lettering and the city around it.", "verified": "Sample data \u00b7 not a real listing", "pool": "shortlist"}, {"name": "Small Press Social", "date": "2026-11-12", "time": "19:00", "organizer": "Sample Reading Room", "category": "Books", "venue": "Sample bookshop \u00b7 Brooklyn", "source": "Fictional demo", "url": "", "admission": "$10", "registration": "Ticket", "description": "A fictional conversation about independent publishing and small magazines.", "verified": "Sample data \u00b7 not a real listing", "pool": "shortlist"}, {"name": "After Hours at the Gallery", "date": "2026-11-13", "time": "18:00", "organizer": "Sample Gallery", "category": "Art", "venue": "Sample gallery \u00b7 Queens", "source": "Fictional demo", "url": "", "admission": "Unknown", "registration": "Check details", "description": "A fictional gallery evening demonstrating an event with unconfirmed admission.", "verified": "Sample data \u00b7 not a real listing", "pool": "candidate"}, {"name": "Making a Neighborhood Map", "date": "2026-11-14", "time": "14:00", "organizer": "Sample City Lab", "category": "Design", "venue": "Sample community space \u00b7 Bronx", "source": "Fictional demo", "url": "", "admission": "Free", "registration": "RSVP", "description": "A fictional discussion about maps and the ways people navigate a neighborhood.", "verified": "Sample data \u00b7 not a real listing", "pool": "shortlist"}, {"name": "Stories from the Ferry", "date": "2026-11-15", "time": "16:00", "organizer": "Sample Story Collective", "category": "Books", "venue": "Sample reading room \u00b7 Staten Island", "source": "Fictional demo", "url": "", "admission": "$8", "registration": "Ticket", "description": "A fictional afternoon of readings and conversation.", "verified": "Sample data \u00b7 not a real listing", "pool": "candidate"}, {"name": "Open Studio Conversations", "date": "2026-11-16", "time": "18:30", "organizer": "Sample Studio Collective", "category": "Art", "venue": "Sample studio \u00b7 Brooklyn", "source": "Fictional demo", "url": "", "admission": "Free-$20", "registration": "Check ticket options", "description": "A fictional mixed-price event showing why a free-to-paid range is not labeled entirely free.", "verified": "Sample data \u00b7 not a real listing", "pool": "candidate"}, {"name": "Designing Everyday Objects", "date": "2026-11-17", "time": "", "organizer": "Sample Design Forum", "category": "Design", "venue": "Sample auditorium \u00b7 Manhattan", "source": "Fictional demo", "url": "", "admission": "Free", "registration": "RSVP", "description": "A fictional talk with a start time still to be confirmed.", "verified": "Sample data \u00b7 not a real listing", "pool": "candidate"}], "demo": true, "demoDate": "2026-11-11"}</script>
+  <script>(() => {
+  'use strict';
+  const data = JSON.parse(document.getElementById('data').textContent);
+  const events = data.events;
+  const byId = id => document.getElementById(id);
+  const initial = () => ({query:'', free:false, hidePast:true, pool:'all', categories:new Set()});
+  let state = initial();
+  function today() {
+    if (data.demo) return data.demoDate;
+    const parts = new Intl.DateTimeFormat('en-US', {
+      timeZone:'America/New_York', year:'numeric', month:'2-digit', day:'2-digit'
+    }).formatToParts(new Date());
+    const part = type => parts.find(p => p.type === type).value;
+    return `${part('year')}-${part('month')}-${part('day')}`;
+  }
+  // A mixed free/paid range is not classified as an entirely free event.
+  const isFree = event => /^(free|\$0(?:\.00)?)$/i.test(event.admission.trim());
+  const dateLabel = value => new Date(`${value}T12:00:00Z`).toLocaleDateString('en-US', {
+    weekday:'long', month:'long', day:'numeric', year:'numeric', timeZone:'America/New_York'
+  });
+  function el(tag, className, text) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
+  }
+  function button(parent, text, onClick) {
+    const node = el('button', '', text);
+    node.type = 'button';
+    node.setAttribute('aria-pressed', 'false');
+    node.onclick = onClick;
+    parent.appendChild(node);
+    return node;
+  }
+  const poolButtons = new Map();
+  for (const [value, label] of [['all','All events'], ['shortlist','Shortlist'], ['candidate','Candidates']]) {
+    poolButtons.set(value, button(byId('pools'), label, () => {state.pool = value; render();}));
+  }
+  const categoryButtons = new Map();
+  for (const category of [...new Set(events.map(e => e.category).filter(Boolean))].sort()) {
+    categoryButtons.set(category, button(byId('cats'), category, () => {
+      state.categories.has(category) ? state.categories.delete(category) : state.categories.add(category);
+      render();
+    }));
+  }
+  byId('q').oninput = event => {state.query = event.target.value.trim().toLowerCase(); render();};
+  byId('f-free').onclick = () => {state.free = !state.free; render();};
+  byId('f-past').onclick = () => {state.hidePast = !state.hidePast; render();};
+  byId('reset').onclick = () => {state = initial(); byId('q').value = ''; render();};
+  byId('demo').hidden = !data.demo;
+
+  function card(event, currentDate) {
+    const node = el('article', `entry${event.pool === 'shortlist' ? ' short' : ''}${event.date < currentDate ? ' past' : ''}`);
+    const top = el('div', 'etop');
+    top.appendChild(el('h3', 'ename', event.name));
+    top.appendChild(el('span', 'etime', event.time || 'Time to be confirmed'));
+    node.appendChild(top);
+    node.appendChild(el('p', 'meta', [event.organizer, event.venue].filter(Boolean).join(' · ')));
+    if (event.description) node.appendChild(el('p', 'description', event.description));
+    const labels = el('div', 'labels');
+    labels.appendChild(el('span', 'label', event.pool === 'shortlist' ? 'Shortlist' : 'Candidate'));
+    if (event.category) labels.appendChild(el('span', 'label', event.category));
+    const unknown = !event.admission || /^unknown/i.test(event.admission);
+    labels.appendChild(el('span', `label${isFree(event) ? ' free' : unknown ? ' unknown' : ''}`, unknown ? 'Admission unknown' : event.admission));
+    if (event.registration) labels.appendChild(el('span', 'label', event.registration));
+    node.appendChild(labels);
+    if (event.pool === 'shortlist') {
+      const sameDate = events.filter(other => other !== event && other.pool === 'shortlist' && other.date === event.date);
+      if (sameDate.length) node.appendChild(el('p', 'clash', `Also shortlisted that day: ${sameDate.map(other => other.name).join('; ')}. Check the start times.`));
+    }
+    // Never turn an imported value into HTML or an executable link.
+    if (event.url && /^https?:\/\//i.test(event.url)) {
+      const link = el('a', 'out', 'View organizer’s event page ↗');
+      link.href = event.url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      node.appendChild(link);
+    }
+    const provenance = [event.verified, event.source ? `Source: ${event.source}` : ''].filter(Boolean).join(' · ');
+    if (provenance) node.appendChild(el('p', 'provenance', provenance));
+    return node;
+  }
+  function render() {
+    const currentDate = today();
+    byId('f-free').setAttribute('aria-pressed', String(state.free));
+    byId('f-past').setAttribute('aria-pressed', String(state.hidePast));
+    for (const [key, node] of poolButtons) node.setAttribute('aria-pressed', String(state.pool === key));
+    for (const [key, node] of categoryButtons) node.setAttribute('aria-pressed', String(state.categories.has(key)));
+    const rows = events.filter(event => {
+      if (state.pool !== 'all' && event.pool !== state.pool) return false;
+      if (state.free && !isFree(event)) return false;
+      if (state.hidePast && event.date < currentDate) return false;
+      if (state.categories.size && !state.categories.has(event.category)) return false;
+      return !state.query || [event.name,event.organizer,event.venue,event.description].join(' ').toLowerCase().includes(state.query);
+    });
+    byId('count').textContent = `${rows.length} ${rows.length === 1 ? 'event' : 'events'} shown${data.demo ? ' · fictional sample data' : ''}`;
+    byId('list').replaceChildren();
+    byId('none').hidden = rows.length > 0;
+    let group, lastDate;
+    for (const event of rows) {
+      if (event.date !== lastDate) {
+        lastDate = event.date;
+        group = el('section', 'daygroup');
+        const heading = el('h2', 'day', dateLabel(event.date));
+        if (event.date < currentDate) heading.appendChild(el('span', 'past-label', 'Past'));
+        group.appendChild(heading);
+        byId('list').appendChild(group);
+      }
+      group.appendChild(card(event, currentDate));
+    }
+    byId('tally').replaceChildren();
+    for (const [label, count] of [
+      ['events',events.length], ['shortlisted',events.filter(e => e.pool === 'shortlist').length],
+      ['upcoming',events.filter(e => e.date >= currentDate).length], ['free',events.filter(isFree).length]
+    ]) {
+      const item = el('span');
+      item.appendChild(el('b','',String(count)));
+      item.appendChild(document.createTextNode(` ${label}`));
+      byId('tally').appendChild(item);
+    }
+  }
+  render();
+  // Refresh date-sensitive filters after a background tab crosses midnight.
+  document.addEventListener('visibilitychange', () => {if (!document.hidden) render();});
+  setInterval(render, 60000);
+})();
+</script>
+</body>
+</html>

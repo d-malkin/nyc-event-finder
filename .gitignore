@@ -1,0 +1,19 @@
+# Local event research and generated pages stay local.
+data/local/
+dist/
+.env
+.env.*
+*.csv
+!data/demo.csv
+*.log
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+node_modules/
+.netlify/
+.vercel/
+*.pem
+*.key
+coverage/
+test-results/
